@@ -4,13 +4,10 @@ import requests
     - Created a Notion integration key
     - Save key in my_secrets.py file
     - Allow the Notion Integration key to access the page we want to share
-2. Decrypt data from Notion
-3. Connect to Discord
-4. Push data to Discord 
+2. Connect to Discord
+3. Push data to Discord 
 """
 
-# header = {"Authorization":my_secrets.KEY, "Notion-Version":"2022-06-28" }
-# database_id = "b07f3dd8c16849d8b800a66fc724adb7"
 class Notion:
     base_url = "https://api.notion.com/v1/databases/"
     ticket = ""
@@ -33,7 +30,7 @@ class Notion:
         return response
 
     def check_ticket_assgin(self, response, ticket):
-        output_to_discord = "nothing"
+
         for i in range(len(response.json()["results"])):
             self.ticket= response.json()["results"][i]["properties"]["Ticket"]["title"][0]["plain_text"]
             if  self.ticket == ticket:
